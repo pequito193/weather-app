@@ -4,16 +4,22 @@ function slide() {
 }
 
 async function lookUpData(cityname) {
+    const temperature = document.querySelector('.temperature')
+    const weather = document.querySelector('.weather')
+    const humidity = document.querySelector('.humidity')
+    const feelsLike = document.querySelector('.feels-like')
+    const wind = document.querySelector('.wind')
+
     const city = document.querySelector('.search-bar').value
-    console.log(city)
     const url =`api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=29ba00cf487b8d5735832dc033a2de17`
     if (city.length > 0)
     try {
-        const data = await fetch(url, {mode: 'cors'})
+        const response = await fetch(url, {mode: 'cors'});
+        const data = await response.json();
+        console.log(data)
     }
     catch (error) {
-        alert (error);
-        return null;
+        alert ('Place not found');
     }
 }
 
