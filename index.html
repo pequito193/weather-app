@@ -11,15 +11,34 @@
 </head>
 <body>
     <div class="header">
-        <img src="./images/search.png" alt="" class="search-image">
-        <input type="text" class="search-bar">
+        <div class="input-wrapper">
+            <img src="./images/search.png" alt="" class="search-image">
+            <input type="text" class="search-bar" placeholder="Search...">
+        </div>
+        <div class="button-wrapper">C
+            <button class="units">
+                <div class="slider"></div>
+            </button>F
+        </div>
     </div>
     <main class="content">
-        <h1>The current weather in Kraków is</h1>
+        <div class="top">
+            <h1>The current weather in Kraków is</h1>
+            <div class="info">
+                <div class="main-info">
+                    <p class="temperature"> 18ºC </p>
+                    <p class="weather">Sunny</p>
+                </div>
+                <div class="extra-info">
+                    <p class="humidity">Humidity: </p>
+                    <p class="feels-like">Feels like: </p>
+                    <p class="wind">Wind: </p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <h1>Next days</h1>
+        </div>
     </main>
-    <footer>
-        <img src="./images/github.png" alt="" id="footer-logo">
-        <a href="https://github.com/pequito193" target="_blank" class="footer-text">pequito193</a>
-    </footer>
 </body>
 </html>
