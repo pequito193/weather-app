@@ -5,11 +5,11 @@ function slide() {
 
 async function lookUpData(cityname) {
     const city = document.querySelector('.search-bar').value
-    const url = `api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=29ba00cf487b8d5735832dc033a2de17`
+    console.log(city)
+    const url =`api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=29ba00cf487b8d5735832dc033a2de17`
     if (city.length > 0)
     try {
         const data = await fetch(url, {mode: 'cors'})
-        console.log(data)
     }
     catch (error) {
         alert (error);
