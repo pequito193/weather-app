@@ -48,6 +48,12 @@ const weather = (() => {
     const feelsLike = document.querySelector('.feels-like-value')
     const wind = document.querySelector('.wind-value')
     const pressure = document.querySelector('.pressure-value')
+    const longitude = document.querySelector('.longitude-value')
+    const latitude = document.querySelector('.latitude-value')
+    const population = document.querySelector('.population-value')
+    const sunrise = document.querySelector('.sunrise-value')
+    const sunset = document.querySelector('.sunset-value')
+    const rain = document.querySelector('.rain-value')
 
     // Fetch data from the API
     async function lookUpData(city) {
@@ -60,8 +66,19 @@ const weather = (() => {
             message.textContent = `The current weather in ${data.city.name}, ${data.city.country} is`
             wind.textContent = `${(data.list[0].wind.speed * 3.6).toFixed(1)} km/h`
             humidity.textContent = `${data.list[0].main.humidity}%`
-            pressure.textContent = `${data.list[0].main.pressure} hPa`
+            rain.textContent = `${data.list[0].pop}%`
             weatherState.textContent = `${data.list[0].weather[0].main}`
+            longitude.textContent = `${data.city.coord.lon}`
+            latitude.textContent = `${data.city.coord.lat}`
+            pressure.textContent = `${data.list[0].main.pressure} hPa`
+            population.textContent = `${data.city.population}`
+
+            // Adjusting time values
+            sunsetValue = `${new Date(data.city.sunset * 1000)}`
+            sunriseValue = `${new Date(data.city.sunrise * 1000)}`
+            sunset.textContent = sunsetValue.substr(15, 6)
+            sunrise.textContent = sunriseValue.substr(15, 6)
+
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
