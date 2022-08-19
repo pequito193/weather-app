@@ -21,11 +21,11 @@ const weather = (() => {
             const response = await fetch(url, {mode: 'cors'});
             const data = await response.json();
             console.log(data)
+            return data;
         }
         catch (error) {
             alert ('Place not found');
         }
-        return data;
     }
 
     // Use the data fetched to modify the information displayed
