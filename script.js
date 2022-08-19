@@ -12,48 +12,57 @@ const weather = (() => {
     const message = document.querySelector('.message')
     const temperature = document.querySelector('.temperature')
     const weatherState = document.querySelector('.weather')
-    const humidity = document.querySelector('.humidity')
-    const feelsLike = document.querySelector('.feels-like')
-    const wind = document.querySelector('.wind')
+    const humidity = document.querySelector('.humidity-value')
+    const feelsLike = document.querySelector('.feels-like-value')
+    const wind = document.querySelector('.wind-value')
+    const pressure = document.querySelector('.pressure-value')
 
     // Fetch data from the API
-    async function lookUpData(cityname) {
-        const city = document.querySelector('.search-bar').value
+    async function lookUpData(city) {
         const url =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=29ba00cf487b8d5735832dc033a2de17`
         if (city.length > 0)
         try {
             const response = await fetch(url, {mode: 'cors'});
             const data = await response.json();
             console.log(data)
-            return data;
+            message.textContent = `The current weather in ${data.city.name}, ${data.city.country} is`
+            wind.textContent = `${(data.list[0].wind.speed * 3.6).toFixed(1)} km/h`
+            humidity.textContent = `${data.list[0].main.humidity}%`
+            pressure.textContent = `${data.list[0].main.pressure} hPa`
+
+            // Sets the temperature to either celsius or fahrenheit
+            if (unit === 1) {
+                temperature.textContent = `${(data.list[0].main.temp - 275.15).toFixed(1)}ºC`;
+                feelsLike.textContent = `${(data.list[0].main.feels_like - 275.15).toFixed(1)}ºC`;
+            } 
+            else {
+                temperature.textContent = `${(1.8 * (data.list[0].main.temp - 273.15) + 32).toFixed(1)}ºF`;
+                feelsLike.textContent = `${(1.8 * (data.list[0].main.feels_like - 273.15) + 32).toFixed(1)}ºF`;
+            }
         }
         catch (error) {
             alert ('Place not found');
         }
     }
 
-    // Use the fetched data to display information on the webpage
-    function weatherData() {
-        let data = lookUpData();
-        message.textContent = `The current weather in ${data.city.name}, ${data.city.country} is`
-        temperature.textContent = `${data.list[0].main.temp}`;
-    }
-
-
-    return {weatherData}
+    return {lookUpData}
 })();
 
-
+weather.lookUpData('Kraków');
 
 const units = document.querySelector('.units')
 units.addEventListener('click', slide)
 
 const searchBar = document.querySelector('.search-bar')
 searchBar.addEventListener('keydown', e => {
-    if (e.code === 'Enter') {
-        weather.weatherData();
+    const city = document.querySelector('.search-bar').value
+    if (e.keyCode === 13) {
+        weather.lookUpData(city);
     }
 })
 
 const search = document.querySelector('.search-image')
-searchBar.addEventListener('click', weather.weatherData)
+searchBar.addEventListener('click', e => {
+    const city = document.querySelector('.search-bar').value
+    weather.lookUpData(city);
+})
