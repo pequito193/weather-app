@@ -24,15 +24,15 @@ function slide() {
     unit ^= true;
 
     // Change the unit on the current displays
-    let string = temperature.textContent.substring(0, temperature.textContent.length - 1);
-    let string2 = feelsLike.textContent.substring(0, temperature.textContent.length - 1);
+    let string = temperature.textContent.substring(0, temperature.textContent.length - 2);
+    let string2 = feelsLike.textContent.substring(0, temperature.textContent.length - 2);
     if (unit === 0) {
-        temperature.textContent = `${round(Number(string) * 1.8 + 32)}F`
-        feelsLike.textContent = `${round(Number(string2) * 1.8 + 32)}F`
+        temperature.textContent = `${round(Number(string) * 1.8 + 32)}ºF`
+        feelsLike.textContent = `${round(Number(string2) * 1.8 + 32)}ºF`
     }
     else {
-        temperature.textContent = `${round(Number((string) - 32) / 1.8)}C`
-        feelsLike.textContent = `${round(Number((string2) - 32) / 1.8)}C`
+        temperature.textContent = `${round(Number((string) - 32) / 1.8)}ºC`
+        feelsLike.textContent = `${round(Number((string2) - 32) / 1.8)}ºC`
     }
 }
 
@@ -82,12 +82,12 @@ const weather = (() => {
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
-                temperature.textContent = `${round(data.list[0].main.temp - 275.15)}C`;
-                feelsLike.textContent = `${round(data.list[0].main.feels_like - 275.15)}C`;
+                temperature.textContent = `${round(data.list[0].main.temp - 275.15)}ºC`;
+                feelsLike.textContent = `${round(data.list[0].main.feels_like - 275.15)}ºC`;
             } 
             else {
-                temperature.textContent = `${round(1.8 * (data.list[0].main.temp - 273.15) + 32)}F`;
-                feelsLike.textContent = `${round(1.8 * (data.list[0].main.feels_like - 273.15) + 32)}F`;
+                temperature.textContent = `${round(1.8 * (data.list[0].main.temp - 273.15) + 32)}ºF`;
+                feelsLike.textContent = `${round(1.8 * (data.list[0].main.feels_like - 273.15) + 32)}ºF`;
             }
         }
         catch (error) {
