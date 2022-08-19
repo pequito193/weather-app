@@ -15,7 +15,7 @@ const weather = (() => {
     // Fetch data from the API
     async function lookUpData(cityname) {
         const city = document.querySelector('.search-bar').value
-        const url =`api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=29ba00cf487b8d5735832dc033a2de17`
+        const url =`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=29ba00cf487b8d5735832dc033a2de17`
         if (city.length > 0)
         try {
             const response = await fetch(url, {mode: 'cors'});
