@@ -59,7 +59,9 @@ const weather = (() => {
 
     // Fetch data from the API
     async function lookUpData(city) {
+
         const url =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=29ba00cf487b8d5735832dc033a2de17`
+
         if (city.length > 0)
         try {
             const response = await fetch(url, {mode: 'cors'});
@@ -81,12 +83,9 @@ const weather = (() => {
             sunset.textContent = sunsetValue.substr(15, 6)
             sunrise.textContent = sunriseValue.substr(15, 6)
 
-            dateValue = `${new Date()}`
-            hourValue = `${new Date(+new Date() + (data.city.timezone * 1000)).toUTCString()}`
-            console.log(dateValue, typeof(dateValue))
-            date.textContent = dateValue.substr(0, 15)
-            hour.textContent = hourValue.substr(16, 6)
-
+            timeValue = `${new Date(+new Date() + (data.city.timezone * 1000)).toUTCString()}`
+            date.textContent = timeValue.substr(0, 16)
+            hour.textContent = timeValue.substr(16, 6)
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
