@@ -62,7 +62,7 @@ searchBar.addEventListener('keydown', e => {
 })
 
 const search = document.querySelector('.search-image')
-searchBar.addEventListener('click', e => {
+search.addEventListener('click', e => {
     const city = document.querySelector('.search-bar').value
     weather.lookUpData(city);
 })
