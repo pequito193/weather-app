@@ -1,9 +1,34 @@
 let unit = 1;
 
+function round(number) {
+    let result = (Math.round(number * 10) / 10).toFixed(1)
+    return result;
+}
+
 function slide() {
+
+    // Query selector the displays
     const slider = document.querySelector('.slider');
+    const temperature = document.querySelector('.temperature')
+    const feelsLike = document.querySelector('.feels-like-value')
+
+    // Move the slider
     slider.classList.toggle('slide')
+
+    // Set the unit to the opposite of the current one
     unit ^= true;
+
+    // Change the unit on the current displays
+    let string = temperature.textContent.substring(0, temperature.textContent.length - 2);
+    let string2 = feelsLike.textContent.substring(0, temperature.textContent.length - 2);
+    if (unit === 0) {
+        temperature.textContent = `${round(Number(string) * 1.8 + 32)}F`
+        feelsLike.textContent = `${round(Number(string2) * 1.8 + 32)}F`
+    }
+    else {
+        temperature.textContent = `${round(Number((string) - 32) / 1.8)}C`
+        feelsLike.textContent = `${round(Number((string2) - 32) / 1.8)}C`
+    }
 }
 
 const weather = (() => {
@@ -33,12 +58,12 @@ const weather = (() => {
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
-                temperature.textContent = `${(data.list[0].main.temp - 275.15).toFixed(1)}ºC`;
-                feelsLike.textContent = `${(data.list[0].main.feels_like - 275.15).toFixed(1)}ºC`;
+                temperature.textContent = `${round(data.list[0].main.temp - 275.15)}C`;
+                feelsLike.textContent = `${round(data.list[0].main.feels_like - 275.15)}C`;
             } 
             else {
-                temperature.textContent = `${(1.8 * (data.list[0].main.temp - 273.15) + 32).toFixed(1)}ºF`;
-                feelsLike.textContent = `${(1.8 * (data.list[0].main.feels_like - 273.15) + 32).toFixed(1)}ºF`;
+                temperature.textContent = `${round(1.8 * (data.list[0].main.temp - 273.15) + 32)}F`;
+                feelsLike.textContent = `${round(1.8 * (data.list[0].main.feels_like - 273.15) + 32)}F`;
             }
         }
         catch (error) {
