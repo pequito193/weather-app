@@ -1,10 +1,15 @@
+// Determine the units, 1 is celsius, 0 is fahrenheit
 let unit = 1;
 
+
+// Rounds numbers to 1 decimal point
 function round(number) {
     let result = (Math.round(number * 10) / 10).toFixed(1)
     return result;
 }
 
+
+// Function to slide the unit changer button
 function slide() {
 
     // Query selector the displays
@@ -31,6 +36,8 @@ function slide() {
     }
 }
 
+
+// Main functions that fetch and take care of the information
 const weather = (() => {
 
     // Grab the information displays
@@ -74,11 +81,17 @@ const weather = (() => {
     return {lookUpData}
 })();
 
+
+// Set default city on page load
 weather.lookUpData('Kraków');
 
+
+// Add event event listener to unit changing button, giving it a little animation
 const units = document.querySelector('.units')
 units.addEventListener('click', slide)
 
+
+// Add event listener to the input box
 const searchBar = document.querySelector('.search-bar')
 searchBar.addEventListener('keydown', e => {
     const city = document.querySelector('.search-bar').value
@@ -87,6 +100,8 @@ searchBar.addEventListener('keydown', e => {
     }
 })
 
+
+// Add event listener to the magnifier image
 const search = document.querySelector('.search-image')
 search.addEventListener('click', e => {
     const city = document.querySelector('.search-bar').value
