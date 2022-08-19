@@ -29,6 +29,7 @@ const weather = (() => {
             wind.textContent = `${(data.list[0].wind.speed * 3.6).toFixed(1)} km/h`
             humidity.textContent = `${data.list[0].main.humidity}%`
             pressure.textContent = `${data.list[0].main.pressure} hPa`
+            weatherState.textContent = `${data.list[0].weather[0].main}`
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
