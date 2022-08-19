@@ -26,7 +26,6 @@ function slide() {
     // Change the unit on the current displays
     let string = temperature.textContent.substring(0, temperature.textContent.length - 1);
     let string2 = feelsLike.textContent.substring(0, temperature.textContent.length - 1);
-    console.log(string, string2)
     if (unit === 0) {
         temperature.textContent = `${round(Number(string) * 1.8 + 32)}F`
         feelsLike.textContent = `${round(Number(string2) * 1.8 + 32)}F`
