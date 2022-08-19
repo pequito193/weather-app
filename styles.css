@@ -286,7 +286,7 @@ h1 {
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 440px) {
     .unimportant-info {
         display: flex;
         flex-direction: column;
@@ -302,8 +302,11 @@ h1 {
     }
 
     .main-info {
-        display: grid;
-        grid-template-columns: 40% 60%;
+        display: flex;
+        flex-direction: row;
+        gap: 8vw;
+        justify-content: center;
+        align-items: center;
     }
 
     .unimportant-info,
