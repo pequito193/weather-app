@@ -54,6 +54,8 @@ const weather = (() => {
     const sunrise = document.querySelector('.sunrise-value')
     const sunset = document.querySelector('.sunset-value')
     const rain = document.querySelector('.rain-value')
+    const date = document.querySelector('.date')
+    const hour = document.querySelector('.hour')
 
     // Fetch data from the API
     async function lookUpData(city) {
@@ -78,6 +80,12 @@ const weather = (() => {
             sunriseValue = `${new Date(data.city.sunrise * 1000)}`
             sunset.textContent = sunsetValue.substr(15, 6)
             sunrise.textContent = sunriseValue.substr(15, 6)
+
+            dateValue = `${new Date()}`
+            hourValue = `${new Date(+new Date() + (data.city.timezone * 1000)).toUTCString()}`
+            console.log(dateValue, typeof(dateValue))
+            date.textContent = dateValue.substr(0, 15)
+            hour.textContent = hourValue.substr(16, 6)
 
 
             // Sets the temperature to either celsius or fahrenheit
