@@ -85,7 +85,7 @@ const weather = (() => {
 
             timeValue = `${new Date(+new Date() + (data.city.timezone * 1000)).toUTCString()}`
             date.textContent = timeValue.substr(0, 16)
-            hour.textContent = timeValue.substr(16, 6)
+            hour.textContent = timeValue.substr(16, 9)
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
