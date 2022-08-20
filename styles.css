@@ -140,7 +140,7 @@ body {
 .content {
     grid-row: 2;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: min-content;
 }
 
 h1 {
@@ -235,6 +235,7 @@ h1 {
     width: 80vw;
     padding: 10px 20px;
     margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -255,8 +256,9 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    margin-top: 80px;
+    margin-top: 60px;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .day {
