@@ -248,6 +248,30 @@ h1 {
     padding: 20px 10px;
 }
 
+
+
+/* Daily forecast section */
+.next-days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 100px 20px;
+}
+
+.day {
+    background-color: #44648fa2;
+    border-radius: 10px;
+    height: 180px;
+    width: 180px;
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+}
+
+
+
+
+/* Media queries for differing screen sizes */
 @media (min-width: 800px) {
     .content-wrapper {
         display: grid;

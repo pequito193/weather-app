@@ -31,9 +31,11 @@ function slide() {
         feelsLike.textContent = `${round(Number(string2) * 1.8 + 32)}ºF`
     }
     else {
-        temperature.textContent = `${round(Number((string) - 32) / 1.8)}ºC`
-        feelsLike.textContent = `${round(Number((string2) - 32) / 1.8)}ºC`
+        temperature.textContent = `${round((Number(string) - 32) / 1.8)}ºC`
+        feelsLike.textContent = `${round((Number(string2) - 32) / 1.8)}ºC`
     }
+
+    
 }
 
 
@@ -89,13 +91,38 @@ const weather = (() => {
 
             // Sets the temperature to either celsius or fahrenheit
             if (unit === 1) {
-                temperature.textContent = `${round(data.list[0].main.temp - 275.15)}ºC`;
-                feelsLike.textContent = `${round(data.list[0].main.feels_like - 275.15)}ºC`;
+                temperature.textContent = `${round(data.list[0].main.temp - 273.15)}ºC`;
+                feelsLike.textContent = `${round(data.list[0].main.feels_like - 273.15)}ºC`;
             } 
             else {
                 temperature.textContent = `${round(1.8 * (data.list[0].main.temp - 273.15) + 32)}ºF`;
                 feelsLike.textContent = `${round(1.8 * (data.list[0].main.feels_like - 273.15) + 32)}ºF`;
             }
+
+            // Sets the data on the 'Daily' section
+            const maxTemp = document.querySelectorAll('.max-temp')
+            let i = 0;
+            maxTemp.forEach(maxTemp => {
+                if (unit === 1) {
+                    maxTemp.textContent = `max ${round(data.list[i].main.temp_max - 273.15)}ºC`;
+                }
+                else {
+                    maxTemp.textContent = `max ${round(1.8 * (data.list[i].main.temp_max - 273.15) + 32)}ºF`;
+                }
+                i++;
+            })
+
+            const minTemp = document.querySelectorAll('.min-temp')
+            let j = 0;
+            minTemp.forEach(minTemp => {
+                if (unit === 1) {
+                    minTemp.textContent = `min ${round(data.list[j].main.temp_min - 273.15)}ºC`;
+                }
+                else {
+                    minTemp.textContent = `min ${round(1.8 * (data.list[j].main.temp_min - 273.15) + 32)}ºF`;
+                }
+                j++;
+            })
         }
         catch (error) {
             alert ('Place not found');
