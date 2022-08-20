@@ -78,10 +78,10 @@ const weather = (() => {
             population.textContent = `${data.city.population}`
 
             // Adjusting time values
-            sunsetValue = `${new Date(data.city.sunset * 1000)}`
-            sunriseValue = `${new Date(data.city.sunrise * 1000)}`
-            sunset.textContent = sunsetValue.substr(15, 6)
-            sunrise.textContent = sunriseValue.substr(15, 6)
+            sunsetValue = `${new Date(data.city.sunset * 1000 + (data.city.timezone * 1000)).toUTCString()}`
+            sunriseValue = `${new Date(data.city.sunrise * 1000 + (data.city.timezone * 1000)).toUTCString()}`
+            sunset.textContent = sunsetValue.substr(16, 6)
+            sunrise.textContent = sunriseValue.substr(16, 6)
 
             timeValue = `${new Date(+new Date() + (data.city.timezone * 1000)).toUTCString()}`
             date.textContent = timeValue.substr(0, 16)
