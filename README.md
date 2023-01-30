@@ -1,2 +1,3 @@
-# Would you like to know the weather anywhere around the world? Simple! Just visit:
+Check it out at
+
 # https://pequito193.github.io/weather-app/
