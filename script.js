@@ -209,7 +209,7 @@ const weather = (() => {
 
 
 // Set default city on page load
-weather.lookUpData('Kraków');
+weather.lookUpData('Gdynia');
 
 
 // Add event event listener to unit changing button, giving it a little animation
